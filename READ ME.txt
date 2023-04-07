@@ -1,0 +1,11 @@
+Please noter the following things regarding this code
+1-In order for it to wok you need to change the information of the database inside the script of most classes
+2-Java swing was used in order to cope with low end pc's as they tend to have a low end cpu and gpu.
+3-Set Mysql java connector in order for the code to work and connect to the datbase.
+4-We have for the time being 3 classes:
+	-UserLogin: Can be accessed as soon as you run the code.
+Logs the user to the Home page. For the 1st iteration we are introducing the general function, later on we will include an admin section.
+	-UserHome:  User connects to the userhome after loging in. As mentionned previously for the first iteration we are ainly focusing on the
+outer layout later on the sections will be devided according to the user's status.
+	-ChangePassword: Can be accessed from the homepage of the user, will be implemented in the future in such a way that the admin, also known 
+in our case as the Librarian will be able to change everyones' password.  
