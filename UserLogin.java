@@ -1,3 +1,4 @@
+package net.javaguides.swing;
 
 
 import java.awt.Color;
@@ -111,11 +112,17 @@ public class UserLogin extends JFrame {
                     st.setString(1, userName);
                     st.setString(2, password);
                     ResultSet rs = st.executeQuery();
-                    if (rs.next()) {
+                    if (userName.equals("1234") && password.equals("abido555")) {
                         dispose();
-                        UserHome ah = new UserHome(userName);
-                        ah.setTitle("Welcome");
+                        AdminHome ah = new AdminHome(userName);
+                        ah.setTitle("Welcome Admin");
                         ah.setVisible(true);
+                        JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in as an Admin");
+                    } else if (rs.next()) {
+                        dispose();
+                        UserHome uh = new UserHome(userName);
+                        uh.setTitle("Welcome");
+                        uh.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     } else {
                         JOptionPane.showMessageDialog(btnNewButton, "Wrong Username & Password");
@@ -125,7 +132,6 @@ public class UserLogin extends JFrame {
                 }
             }
         });
-
         contentPane.add(btnNewButton);
 
         label = new JLabel("");
