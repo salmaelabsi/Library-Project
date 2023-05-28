@@ -18,9 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 public class ViewLibraryBooks extends JFrame {
     private JPanel contentPane;
     private JTable table;
@@ -31,6 +31,7 @@ public class ViewLibraryBooks extends JFrame {
     static final String DB_URL = "jdbc:mysql://localhost:3306/swing_demo";
     static final String USER = "root";
     static final String PASS = "Aben5099";
+
     public ViewLibraryBooks() {
         initializeUI();
         populateTable();
@@ -65,8 +66,6 @@ public class ViewLibraryBooks extends JFrame {
         });
         contentPane.add(btnBack);
 
-      
-
         scrollPane = new JScrollPane();
         scrollPane.setBounds(70, 150, 850, 200);
         contentPane.add(scrollPane);
@@ -81,17 +80,24 @@ public class ViewLibraryBooks extends JFrame {
 
     private void populateTable() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(JDBC_DRIVER);
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement();
-            String sql = "SELECT book_id, book_title, author, floor, CAST(shelf AS CHAR) AS shelf FROM books";
+            String sql = "SELECT id, name, book_title, book_id, time_borrowed, time_returned FROM fees_management";
             ResultSet rs = stmt.executeQuery(sql);
 
             DefaultTableModel model = new DefaultTableModel(new Object[][] {},
-                    new String[] { "Book ID", "Title", "Author", "Floor", "Shelf" });
+                    new String[] { "ID", "Name", "Book Title", "Book ID", "Time Borrowed", "Time Returned" });
             while (rs.next()) {
-                model.addRow(new Object[] { rs.getInt("book_id"), rs.getString("book_title"), rs.getString("author"),
-                        rs.getInt("floor"), rs.getString("shelf") });
+                String name = rs.getString("name");
+                if (name.equalsIgnoreCase("library")) {
+                    name = "Library";
+                } else {
+                    name = "Booked";
+                }
+                model.addRow(new Object[] { rs.getInt("id"), name, rs.getString("book_title"),
+                        rs.getInt("book_id"), rs.getTimestamp("time_borrowed"),
+                        rs.getTimestamp("time_returned") });
             }
             table.setModel(model);
 
@@ -101,5 +107,18 @@ public class ViewLibraryBooks extends JFrame {
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ViewLibraryBooks frame = new ViewLibraryBooks();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

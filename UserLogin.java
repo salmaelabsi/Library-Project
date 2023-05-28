@@ -1,6 +1,7 @@
 package net.javaguides.swing;
 
-
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,7 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 public class UserLogin extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -112,7 +116,7 @@ public class UserLogin extends JFrame {
                     st.setString(1, userName);
                     st.setString(2, password);
                     ResultSet rs = st.executeQuery();
-                    if (userName.equals("1234") && password.equals("abido555")) {
+                    if (userName.equals("library") && password.equals("abido555")) {
                         dispose();
                         AdminHome ah = new AdminHome(userName);
                         ah.setTitle("Welcome Admin");

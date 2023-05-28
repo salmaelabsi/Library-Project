@@ -1,3 +1,4 @@
+package net.javaguides.swing;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -46,6 +47,11 @@ public class UserHome extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+        Welcome = new JLabel("Welcome " + userSes + "!");
+        Welcome.setFont(new Font("Tahoma", Font.BOLD, 40));
+        Welcome.setBounds(450, 50, 400, 100);
+        contentPane.add(Welcome);
+
         JButton btnNewButton = new JButton("Logout");
         btnNewButton.setForeground(new Color(0, 0, 0));
         btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
@@ -69,11 +75,12 @@ public class UserHome extends JFrame {
             }
 
         });
-        btnNewButton.setBounds(0, 0, 600, 400);
+        btnNewButton.setBounds(400, 200, 400, 100);
         contentPane.add(btnNewButton);
 
         JButton button = new JButton("Change-password");
         button.setBackground(UIManager.getColor("Button.disabledForeground"));
+        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ChangePassword bo = new ChangePassword(userSes);
@@ -82,30 +89,24 @@ public class UserHome extends JFrame {
 
             }
         });
-        button.setBounds(600, 0, 600, 400);
+        button.setBounds(400, 350, 400, 100);
         contentPane.add(button);
 
         JButton btnViewBooks = new JButton("View Library Books");
         btnViewBooks.setBackground(UIManager.getColor("Button.disabledForeground"));
         btnViewBooks.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        contentPane.add(btnViewBooks);
+        
         btnViewBooks.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Add code to display the list of books in the library
+            	ViewLibraryBooks ViewLibraryBooks = new ViewLibraryBooks();
+                ViewLibraryBooks.setTitle("Update Books");
+                ViewLibraryBooks.setVisible(true);
             }
         });
-        btnViewBooks.setBounds(0, 400, 600, 400);
+        btnViewBooks.setBounds(400, 500, 400, 100);
         contentPane.add(btnViewBooks);
 
-        JButton btnBookABook = new JButton("Book a Book");
-        btnBookABook.setBackground(UIManager.getColor("Button.disabledForeground"));
-        btnBookABook.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        btnBookABook.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // TODO: Add code to allow the user to book a book
-            }
-        });
-        btnBookABook.setBounds(600, 400, 600, 400);
-        contentPane.add(btnBookABook);
-
+        
     }
 }
