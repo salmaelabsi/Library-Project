@@ -116,7 +116,7 @@ public class UserLogin extends JFrame {
                     st.setString(1, userName);
                     st.setString(2, password);
                     ResultSet rs = st.executeQuery();
-                    if (userName.equals("library") && password.equals("abido555")) {
+                    if (userName.equals("library") && password.equals("abido555")||userName.equals("library") && password.equals("abido789")) {
                         dispose();
                         AdminHome ah = new AdminHome(userName);
                         ah.setTitle("Welcome Admin");

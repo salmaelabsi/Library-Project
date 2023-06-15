@@ -1,3 +1,5 @@
+package net.javaguides.swing;
+
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -86,7 +88,7 @@ public class ChangePassword extends JFrame {
 
             }
         });
-        btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 29));
+        btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 30));
         btnSearch.setBackground(new Color(240, 240, 240));
         btnSearch.setBounds(438, 127, 170, 59);
         contentPane.add(btnSearch);

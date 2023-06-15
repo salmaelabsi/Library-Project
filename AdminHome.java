@@ -67,7 +67,7 @@ public class AdminHome extends JFrame {
         });
         contentPane.add(btnLogout);
 
-        btnChangePassword = new JButton("Change Password");
+        btnChangePassword = new JButton("Password");
         btnChangePassword.setFont(new Font("Tahoma", Font.PLAIN, 26));
         btnChangePassword.setBounds(396, 161, 218, 73);
         btnChangePassword.addActionListener(new ActionListener() {
